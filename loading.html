@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Typing Animation with Redirect</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #777;
+            font-family: 'Courier New', Courier, monospace; /* 使用等宽字体 */
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .text {
+            font-size: 80px;
+            font-weight: bold; /* 加粗字体 */
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .1em solid red; /* 光标效果 */
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html">
+            <img class="logo" src="src/Dota-2-logo.png" alt="Logo">
+        </a>
+        <div class="text" id="typedText"></div>
+    </div>
+
+    <script>
+        const text = "Dota 2";
+        const textElement = document.getElementById('typedText');
+
+        function typeWriter(text, i) {
+            if (i <= text.length) {
+                textElement.textContent = text.substring(0, i);
+                i++;
+                setTimeout(function() {
+                    typeWriter(text, i);
+                }, 200);
+            } else {
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+        }
+
+        typeWriter(text, 0);
+    </script>
+</body>
+</html>
